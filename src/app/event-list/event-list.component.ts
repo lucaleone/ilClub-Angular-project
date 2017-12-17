@@ -38,16 +38,12 @@ export class EventListComponent implements OnInit {
     this.eventList = [];
     this.service.getData('Eventi.json').subscribe(events => {
       for (const idx in events) {
-        console.log('event:' + idx);
         console.log(this.eventsId);
         const isOwner = events[idx].owner.toLowerCase() === this.currentUser.email.toLowerCase();
         const isGoing = _.includes(this.currentUser.eventi, idx);
-        console.log('isOwner:' + isOwner);
-        console.log('isGoing:' + isGoing);
         if ((this.esploraFilter && isOwner === false && isGoing === false) ||
           (this.goingFilter && (isOwner || isGoing)) ||
           (this.ownerFilter && isOwner)) {
-          console.log('add evento to list');
           const tmpEvent = {
             key: idx,
             data: events[idx].data,
@@ -79,8 +75,6 @@ export class EventListComponent implements OnInit {
         this.showEvents.push(event);
       }
     }
-    console.log('this.showEvents caricato:' + this.showEvents);
-    console.log(this.showEvents);
   }
 
   // tasto cancella, occhio a id / key
@@ -88,7 +82,7 @@ export class EventListComponent implements OnInit {
     if (window.confirm('sicuro di voler cancellare?')) {
       for (const eventidx in this.eventList) {
 
-        if (this.eventList[eventidx].owner === 'sandra.green@email.com' && this.eventList[eventidx].key === key) {
+        if (this.eventList[eventidx].owner === this.currentUser.email.toLowerCase() && this.eventList[eventidx].key === key) {
           // chiave evento
           console.log(key);
           console.log(eventidx);
@@ -108,30 +102,22 @@ export class EventListComponent implements OnInit {
   }
 
   partecipaEvent(key: string) {
-
-    var keys = this.currentUser.eventi;
+    const keys = this.currentUser.eventi;
     console.log(Object.keys(keys).length);
-    if(_.includes(keys, key)){
-      //tolgo
-      console.log(keys); 
-      //keys.splice(keys[key],1);
+    if (_.includes(keys, key)) {
       delete keys[key];
       this.currentUser.eventi = keys;
-      console.log(Object.keys(this.currentUser.eventi).length);
-      localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+      // console.log(Object.keys(this.currentUser.eventi).length);
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
 
-    }else{
-
-      //aggiungo
-      console.log(keys); 
-      keys[key]=key;
-      //keys.push(key);
+    } else {
+      keys[key] = key;
       this.currentUser.eventi = keys;
-      console.log(Object.keys(this.currentUser.eventi).length);
-      localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
+      // console.log(Object.keys(this.currentUser.eventi).length);
+      localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
     }
     this.loadList(1);
-    //this.service.edit('Utenti/' + this.currentUser + '/eventi.json', key).subscribe(ids => this.loadList(1));
+    // this.service.edit('Utenti/' + this.currentUser + '/eventi.json', key).subscribe(ids => this.loadList(1));
 
   }
 }

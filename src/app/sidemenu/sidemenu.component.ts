@@ -24,22 +24,19 @@ export class SideMenuComponent implements OnInit {
 
   ngOnInit() {
     this.getIsMenuOpen();
-    console.log('sei in init');
   }
   close() {
     this.appService.setIsMenuOpen(false);
   }
   getIsMenuOpen(): void {
-    console.log('SIDEMENU');
     this.appService.getIsMenuOpen().subscribe(isMenuOpen => {
-      console.log('SIDEMENU getIsMenuOpen: ' + isMenuOpen);
       this.isMenuOpen = isMenuOpen;
     });
   }
 
   logout() {
     localStorage.removeItem('currentUser');
-    console.log('logout effetuato con successo');
+    // console.log('logout effetuato con successo');
     this.close();
     this.router.navigateByUrl('/login');
   }

@@ -23,7 +23,6 @@ export class HeaderComponent implements OnInit {
       this.isCalendarOpen = calendarState;
     });
     this.appService.getIsMenuOpen().subscribe(isMenuOpen => {
-      console.log('HEADER getIsMenuOpen: ' + isMenuOpen);
       this.isMenuOpen = isMenuOpen;
     });
   }
@@ -35,7 +34,6 @@ export class HeaderComponent implements OnInit {
   }
   logout() {
     localStorage.removeItem('currentUser');
-    console.log('logout effetuato con successo');
     this.router.navigateByUrl('/login');
   }
 }

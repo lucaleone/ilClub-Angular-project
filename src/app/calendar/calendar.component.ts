@@ -26,7 +26,6 @@ export class CalendarComponent implements OnInit {
   }
   getIsCalendarOpen(): void {
     this.appService.getCalendarOpen().subscribe(calendarState => {
-      console.log('calendarState: ' + calendarState);
       this.isCalendarOpen = calendarState;
     });
   }

@@ -25,11 +25,11 @@ export class PageLoginComponent {
           this.loginError = false;
           this.loginDone = true;
           localStorage.setItem('currentUser', JSON.stringify(users[idx]));
-          console.log('login effetuato con successo' + localStorage.getItem('currentUser'));
+          // console.log('login effetuato con successo' + localStorage.getItem('currentUser'));
           this.router.navigateByUrl('/home');
         } else {
           this.loginError = true;
-          console.log('errore nel login');
+          // console.log('errore nel login');
         }
       }
     });
