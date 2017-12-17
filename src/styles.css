@@ -116,23 +116,24 @@ main{
   z-index: 2;
 }
 
-.pageButtonsContainer>button{
+.pageButtonsContainer>*{
   width: 2.9rem;
   height: 2.9rem;
   margin-top: 1rem;
   border-radius: 50%;
   border:0;
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.28);
+  transition: box-shadow 0.2s ease-in;
   background-color: white;
   fill: black;
 }
-.pageButtonsContainer>button:last-child{
+.pageButtonsContainer>*:last-child{
   width: 3.3rem;
   height: 3.3rem;
   background-color: var(--ilClub-red, #B30000);
   color: white;
 }
-.pageButtonsContainer>button:hover{
+.pageButtonsContainer>*:hover{
   box-shadow: none;
 }
 
@@ -141,6 +142,22 @@ main{
   background-position: center;
   background-repeat: no-repeat;
   background-size: 50%;
+  color: transparent;
+}
+.calendarIcon::-webkit-inner-spin-button,
+.calendarIcon::-webkit-clear-button,
+.calendarIcon::-webkit-datetime-edit-month-field,
+.calendarIcon::-webkit-datetime-edit-day-field,
+.calendarIcon::-webkit-datetime-edit-year-field {
+  -webkit-appearance: none;
+  display: none;
+}
+.calendarIcon::-webkit-calendar-picker-indicator {
+  color: transparent;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 .newIcon{
   background-image: url('assets/new.png');

@@ -23,7 +23,7 @@ export class FirebaseService {
   }
 
   public getEvent(key: string) {
-    return this.http.get(this.apiUrl + 'Eventi/' + key+'.json').map((response: Response) => response.json());
+    return this.http.get(this.apiUrl + 'Eventi/' + key + '.json').map((response: Response) => response.json());
   }
 
   public createEvent(event: Event) {
@@ -35,7 +35,7 @@ export class FirebaseService {
   }
 
   public editEvent(key: string, event: Event) {
-    return this.http.put(this.apiUrl + 'Eventi/' + key+'.json', event).map((response: Response) => response.json());
+    return this.http.put(this.apiUrl + 'Eventi/' + key + '.json', event).map((response: Response) => response.json());
   }
 
   public edit(key: string, id: string) {

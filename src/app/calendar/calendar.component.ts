@@ -35,6 +35,7 @@ export class CalendarComponent implements OnInit {
   }
 
   changeSelectedDay(dayNum: number) {
+    console.log('selectday: ' + dayNum);
     this.selectedDay = dayNum;
   }
 }
