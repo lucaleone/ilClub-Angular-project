@@ -4,6 +4,7 @@
   <h3>{{currentUser.email}}</h3>
   <p class="textJustified lineMargin">{{currentUser.descrizione}}</p>
 </section>
+<h3>Eventi che organizzi:</h3>
 <section>
   <app-event-list [eventsId]="currentUser.eventi" [ownerFilter]="true"></app-event-list>
 </section>

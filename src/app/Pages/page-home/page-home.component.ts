@@ -13,7 +13,7 @@ export class PageHomeComponent implements OnInit {
   currentUser: User;
   isCalendarOpen: boolean;
   idTaken: boolean;
-
+  selectedDay: number;
   constructor(private appService: EventsHandler, private service: FirebaseService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     // console.log('HOME this.currentUser: ');
@@ -29,7 +29,10 @@ export class PageHomeComponent implements OnInit {
   OpenCalendar() {
     this.appService.setCalendarOpen(true);
   }
-
+  FilterByDate(event) {
+    this.selectedDay = Number(event.target.value.replace('-', '').replace('-', ''));
+    this.service.clickedDay.emit(this.selectedDay);
+  }
   getIsCalendarOpen(): void {
     this.appService.getCalendarOpen().subscribe(calendarState => {
       // console.log('3calendarState: ' + calendarState);

@@ -15,6 +15,7 @@ export class EventListComponent implements OnInit {
   eventKeys: string[];
 
   @Input() eventsId: string[];
+  @Input() selectedDay: number;
   showEvents: Event[];
   currentUser: User;
 
@@ -22,7 +23,7 @@ export class EventListComponent implements OnInit {
   @Input() ownerFilter: boolean;
   @Input() goingFilter: boolean;
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute, private service: FirebaseService) {
+  constructor(private router: Router, activatedRoute: ActivatedRoute, private firebaseService: FirebaseService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
@@ -30,20 +31,20 @@ export class EventListComponent implements OnInit {
     if (this.eventsId !== []) {
       this.loadList(1);
     }
-    this.service.clickedDay.subscribe(num => this.showList(num));
+    this.firebaseService.clickedDay.subscribe(num => this.showList(num));
   }
 
   loadList(day: number) {
     this.eventKeys = [];
     this.eventList = [];
-    this.service.getData('Eventi.json').subscribe(events => {
+    this.firebaseService.getData('Eventi.json').subscribe(events => {
       for (const idx in events) {
         console.log(this.eventsId);
         const isOwner = events[idx].owner.toLowerCase() === this.currentUser.email.toLowerCase();
         const isGoing = _.includes(this.currentUser.eventi, idx);
         if ((this.esploraFilter && isOwner === false && isGoing === false) ||
-          (this.goingFilter && (isOwner || isGoing)) ||
-          (this.ownerFilter && isOwner)) {
+            (this.goingFilter && (isOwner || isGoing)) ||
+            (this.ownerFilter && isOwner)) {
           const tmpEvent = {
             key: idx,
             data: events[idx].data,
@@ -68,16 +69,13 @@ export class EventListComponent implements OnInit {
     console.log('showList');
     this.showEvents = [];
     for (const event of this.eventList) {
-      const dayNumber = (event.data.split('-'))[2];
-
-      if (parseFloat(dayNumber) >= selectedDay) {
-        // console.log(idx);
+      const eventDate = Number(event.data.replace('-', '').replace('-', ''));
+      if (eventDate >= selectedDay) {
         this.showEvents.push(event);
       }
     }
   }
 
-  // tasto cancella, occhio a id / key
   deleteEvent(key: string) {
     if (window.confirm('sicuro di voler cancellare?')) {
       for (const eventidx in this.eventList) {
@@ -87,11 +85,10 @@ export class EventListComponent implements OnInit {
           console.log(key);
           console.log(eventidx);
 
-          this.service.deleteEvent(key).subscribe(arg => {
+          this.firebaseService.deleteEvent(key).subscribe(arg => {
             console.log('eliminato');
             this.loadList(1);
           });
-
         }
       }
     }
@@ -117,7 +114,7 @@ export class EventListComponent implements OnInit {
       localStorage.setItem('currentUser', JSON.stringify(this.currentUser));
     }
     this.loadList(1);
-    // this.service.edit('Utenti/' + this.currentUser + '/eventi.json', key).subscribe(ids => this.loadList(1));
+    // this.firebaseService.edit('Utenti/' + this.currentUser + '/eventi.json', key).subscribe(ids => this.loadList(1));
 
   }
 }

@@ -22,13 +22,13 @@ export class PageNeweventComponent {
 
   constructor(private router: Router,
               activatedRoute: ActivatedRoute,
-              private service: FirebaseService) {
+              private firebaseService: FirebaseService) {
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.key = activatedRoute.snapshot.params['key'];
 
     if (this.key) {
-      this.service.getEvent(this.key).subscribe(event => {
+      this.firebaseService.getEvent(this.key).subscribe(event => {
         this.currentEvent = event;
         this.show = true;
       });
@@ -50,7 +50,7 @@ export class PageNeweventComponent {
   save() {
     this.onSave = true;
     if (!this.key) {
-      this.service.createEvent(this.currentEvent).subscribe(arg => {
+      this.firebaseService.createEvent(this.currentEvent).subscribe(arg => {
           this.router.navigateByUrl('/home');
           this.onSuccess = 'Evento salvato';
         },
@@ -59,7 +59,7 @@ export class PageNeweventComponent {
         }
       );
     } else {
-      this.service.editEvent(this.key, this.currentEvent).subscribe(arg => {
+      this.firebaseService.editEvent(this.key, this.currentEvent).subscribe(arg => {
           this.router.navigateByUrl('/home');
           this.onSuccess = 'Evento modificato';
         },
