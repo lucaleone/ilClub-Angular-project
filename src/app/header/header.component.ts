@@ -10,18 +10,13 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isMenuOpen: boolean;
-  isCalendarOpen: boolean;
 
-  constructor(private appService: EventsHandler,private router: Router, activatedRoute: ActivatedRoute) {
+  constructor(private appService: EventsHandler, private router: Router, activatedRoute: ActivatedRoute) {
     this.isMenuOpen = false;
-    this.isCalendarOpen = false;
   }
 
   ngOnInit() {
     // this.serviceUser.setEmail(this.userEmail);
-    this.appService.getCalendarOpen().subscribe(calendarState => {
-      this.isCalendarOpen = calendarState;
-    });
     this.appService.getIsMenuOpen().subscribe(isMenuOpen => {
       this.isMenuOpen = isMenuOpen;
     });

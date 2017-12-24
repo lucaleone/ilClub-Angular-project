@@ -2,13 +2,14 @@ import {Injectable} from '@angular/core';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
+import {Router} from '@angular/router';
 
 @Injectable()
 export class AuthService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
 
-  constructor(private _firebaseAuth: AngularFireAuth) {
+  constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
     this.user = _firebaseAuth.authState;
     // afAuth.auth.createUserWithEmailAndPassword('fsafa', 'wfsaf');
     this.user.subscribe(
@@ -22,7 +23,9 @@ export class AuthService {
       }
     );
   }
-
+  getCurrentUser(): Observable<firebase.User> {
+    return this.user;
+  }
   signInWithEmail(email, password) {
     return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password);
   }
@@ -56,7 +59,6 @@ export class AuthService {
   }
 
   logout() {
-    this._firebaseAuth.auth.signOut();
-    // .then((res) => this.router.navigate(['/']));
+    this._firebaseAuth.auth.signOut().then((res) => this.router.navigate(['/']));
   }
 }

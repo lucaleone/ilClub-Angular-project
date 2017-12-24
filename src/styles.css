@@ -345,17 +345,6 @@ main{
 .boxShadow{
   box-shadow: 0 0 10px #888888;
 }
-.blurable{
-  filter: none;
-  transition: filter 0.3s linear;
-}
-.blur {
-  filter: blur(2.5px);
-/*brightness(70%);*/
-}
-.focus {
-  filter: none !important;
-}
 .mobile{
   display: block;
 }

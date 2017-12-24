@@ -1,7 +1,9 @@
-import {Component, Output, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FirebaseService} from '../../firebase.service';
 import {User} from '../../models/user';
 import {EventsHandler} from '../../Services/eventsHandler.service';
+import * as firebase from 'firebase/app';
+import {AngularFireAuth} from 'angularfire2/auth';
 
 @Component({
   selector: 'app-page-home',
@@ -9,32 +11,22 @@ import {EventsHandler} from '../../Services/eventsHandler.service';
   styleUrls: ['./page-home.component.css']
 })
 
-export class PageHomeComponent implements OnInit {
+export class PageHomeComponent {
   currentUser: User;
-  isCalendarOpen: boolean;
+  private userDetails: firebase.User = null;
   idTaken: boolean;
   selectedDay: number;
-  constructor(private appService: EventsHandler, private service: FirebaseService) {
+  constructor(private appService: EventsHandler, private service: FirebaseService, private _firebaseAuth: AngularFireAuth) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idTaken = (this.currentUser != null);
-    this.isCalendarOpen = false;
+    _firebaseAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userDetails = user;
+      }});
   }
 
-  ngOnInit() {
-    this.getIsCalendarOpen();
-  }
-
-  OpenCalendar() {
-    this.appService.setCalendarOpen(true);
-  }
   FilterByDate(event) {
     this.selectedDay = Number(event.target.value.replace('-', '').replace('-', ''));
     this.service.clickedDay.emit(this.selectedDay);
-  }
-  getIsCalendarOpen(): void {
-    this.appService.getCalendarOpen().subscribe(calendarState => {
-      // console.log('3calendarState: ' + calendarState);
-      this.isCalendarOpen = calendarState;
-    });
   }
 }

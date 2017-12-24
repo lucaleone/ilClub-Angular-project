@@ -5,7 +5,6 @@ import {Subject} from 'rxjs/Subject';
 @Injectable()
 export class EventsHandler {
   isMenuOpen: Subject<boolean> = new Subject();
-  isCalendarOpen: Subject<boolean> = new Subject();
 
   constructor() {
   }
@@ -16,13 +15,5 @@ export class EventsHandler {
 
   getIsMenuOpen(): Observable<boolean> {
     return this.isMenuOpen.asObservable();
-  }
-
-  setCalendarOpen(calendarState): void {
-    this.isCalendarOpen.next(calendarState);
-  }
-
-  getCalendarOpen(): Observable<boolean> {
-    return this.isCalendarOpen.asObservable();
   }
 }

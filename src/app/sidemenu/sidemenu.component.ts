@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import { EventsHandler } from '../Services/eventsHandler.service';
-import {Router} from '@angular/router';
+import {AuthService} from '../Services/auth.service';
+import {AngularFireAuth} from "angularfire2/auth";
+import * as firebase from "firebase/app";
 
 @Component({
   selector: 'app-sidemenu',
@@ -9,14 +11,19 @@ import {Router} from '@angular/router';
 })
 export class SideMenuComponent implements OnInit {
   isMenuOpen: boolean;
+  private userDetails: firebase.User = null;
 
-  constructor(private router: Router, private appService: EventsHandler) {
+  constructor(private appService: EventsHandler, private auth: AuthService, private _firebaseAuth: AngularFireAuth) {
+    _firebaseAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userDetails = user;
+      }});
     this.isMenuOpen = false;
     window.addEventListener('orientationchange', () => {
       if(Math.abs(Number(window.orientation)) === 90)
         this.close(); // close menu on landscape
       }, false);
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       if(window.innerWidth >= 700)
         this.close();
     });
@@ -35,9 +42,7 @@ export class SideMenuComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('currentUser');
-    // console.log('logout effetuato con successo');
+    this.auth.logout();
     this.close();
-    this.router.navigateByUrl('/login');
   }
 }
