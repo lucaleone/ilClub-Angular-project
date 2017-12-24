@@ -24,7 +24,8 @@ export const appRoutes: Routes = [
   {
     path: 'esplora',
     component: PageEsploraComponent,
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

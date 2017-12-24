@@ -12,8 +12,9 @@
         <span><strong>Invalid username or/and password.</strong></span>
       </p>
       <button name="login" class="lineMargin squareButton accentButton" type="button"
-              [disabled]="formCtrl.form.invalid" (click)="login()">Login with email</button>
+              [disabled]="formCtrl.form.invalid" (click)="loginEmail()">Login with email</button>
     </form>
-    <button name="loginGoogle" class="lineMargin squareButton accentButton" type="button" (click)="loginGoogle()">Login with google</button>
+    <button name="loginGoogle" class="lineMargin squareButton accentButton" type="button" (click)="signUpWithEmail()">sign up with email</button>
+    <button name="loginGoogle" class="lineMargin squareButton accentButton" type="button" (click)="signInWithGoogle()">Login with google</button>
   </div>
 </div>

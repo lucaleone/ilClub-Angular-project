@@ -16,8 +16,6 @@ export class PageHomeComponent implements OnInit {
   selectedDay: number;
   constructor(private appService: EventsHandler, private service: FirebaseService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    // console.log('HOME this.currentUser: ');
-    // console.log(this.currentUser);
     this.idTaken = (this.currentUser != null);
     this.isCalendarOpen = false;
   }

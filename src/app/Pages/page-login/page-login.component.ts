@@ -4,6 +4,7 @@ import {Router} from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import {AuthService} from '../../Services/auth.service';
 
 @Component({
   selector: 'app-page-login',
@@ -16,9 +17,8 @@ export class PageLoginComponent {
   loginError = false;
   loginDone = false;
 
-  constructor(private router: Router, private service: FirebaseService, public afAuth: AngularFireAuth) {
+  constructor(private router: Router, private service: FirebaseService, public authService: AuthService) {
     // this.serviceUser.getEmail().subscribe(arg => console.log(arg));
-    afAuth.auth.createUserWithEmailAndPassword('fsafa', 'wfsaf');
   }
 
   login() {
@@ -39,12 +39,38 @@ export class PageLoginComponent {
     });
   }
   loginEmail() {
-    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password);
+    this.authService.signInWithEmail(this.email, this.password)
+      .then((res) => {
+        console.log('login succesful');
+        this.router.navigate(['/home']);
+      })
+      .catch((err) => {
+        alert(err.message);
+        console.log(err);
+      });
+  }
+  signUpWithEmail() {
+    this.authService.signUpWithEmail(this.email, this.password)
+      .then((res) => {
+        console.log('account creato!');
+        // console.log(res);
+      }).catch((err) => {
+        alert(err.message);
+        console.log(err);
+      });
   }
   loginGoogle() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    this.authService.signInWithGoogle()
+      .then((res) => {
+        this.router.navigate(['/home']);
+      })
+      .catch((err) => console.log(err));
   }
-  logoutGoogle() {
-    this.afAuth.auth.signOut();
+  signInWithFacebook() {
+    this.authService.signInWithFacebook()
+      .then((res) => {
+        this.router.navigate(['/home']);
+      })
+      .catch((err) => console.log(err));
   }
 }
