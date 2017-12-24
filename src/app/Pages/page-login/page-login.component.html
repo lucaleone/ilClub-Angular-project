@@ -1,18 +1,19 @@
 <div class="backgroundImage paddingLayoutRoule">
-  <div class="paddingLayoutRoule lightGrayBackground">
-    <form #loginForm="ngForm">
+  <div class="loginForm lightGrayBackground">
+    <form name="userform" method="post" #formCtrl="ngForm">
       <h2>LOGIN</h2>
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required [(ngModel)]="email">
+      <label for="email">email:</label>
+      <input type="email" id="email" name="email" required [(ngModel)]="email" placeholder="email...">
 
       <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required [(ngModel)]="password">
+      <input type="password" id="password" name="password" required [(ngModel)]="password" placeholder="password...">
       <!--<p [ngStyle]="{'visibility': loginForm.valid ? 'hidden' : 'visible'}">-->
       <p class=" lineMargin paddingHalfLayoutRoule errorLabel" [ngStyle]="{'visibility': loginError ? 'visible' : 'hidden'}">
         <span><strong>Invalid username or/and password.</strong></span>
       </p>
-      <input name="login" class="lineMargin squareButton accentButton" type="button" value="Login"
-             [disabled]="!loginForm.valid || loginForm.pristine" (click)="login()">
+      <button name="login" class="lineMargin squareButton accentButton" type="button"
+              [disabled]="formCtrl.form.invalid" (click)="login()">Login with email</button>
     </form>
+    <button name="loginGoogle" class="lineMargin squareButton accentButton" type="button">Login with google</button>
   </div>
 </div>

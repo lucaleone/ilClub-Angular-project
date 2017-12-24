@@ -20,8 +20,11 @@ import { EventListComponent } from './event-list/event-list.component';
 import {EventsHandler} from './Services/eventsHandler.service';
 import {AuthGuard} from './Guards/auth.guard';
 import { PageEsploraComponent } from './Pages/page-esplora/page-esplora.component';
+import { AngularFireModule } from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
 import { environment } from '../environments/environment';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,10 @@ import { environment } from '../environments/environment';
     ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     FormsModule,
     HttpModule,
-    routing
+    routing,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
+    AngularFireAuthModule
   ],
   providers: [
     FirebaseService,
