@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
 import {FirebaseService} from '../../firebase.service';
 import {Router} from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'app-page-login',
@@ -13,8 +16,9 @@ export class PageLoginComponent {
   loginError = false;
   loginDone = false;
 
-  constructor(private router: Router, private service: FirebaseService) {
+  constructor(private router: Router, private service: FirebaseService, public afAuth: AngularFireAuth) {
     // this.serviceUser.getEmail().subscribe(arg => console.log(arg));
+    afAuth.auth.createUserWithEmailAndPassword('fsafa', 'wfsaf');
   }
 
   login() {
@@ -33,5 +37,14 @@ export class PageLoginComponent {
         }
       }
     });
+  }
+  loginEmail() {
+    this.afAuth.auth.signInWithEmailAndPassword(this.email, this.password);
+  }
+  loginGoogle() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  }
+  logoutGoogle() {
+    this.afAuth.auth.signOut();
   }
 }

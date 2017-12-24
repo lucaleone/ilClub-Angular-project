@@ -46,7 +46,7 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
     FormsModule,
     HttpModule,
     routing,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(environment.firebase, 'ilClub'),
     AngularFirestoreModule,
     AngularFireAuthModule
   ],

@@ -183,7 +183,7 @@ main{
   margin-bottom: var(--margin-layout, 16px);
 }
 .cardImg {
-  height: 8rem;
+  height: 9rem;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -193,9 +193,6 @@ main{
   height: 12rem;
   padding: var(--margin-layout, 16px);
   padding-top: var(--half-margin-layout, 8px);
-  margin-left: var(--margin-layout, 16px);
-  margin-right: var(--margin-layout, 16px);
-  margin-top: var(--negative-margin-layout, -16px);
   background: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
   transition: margin 0.2s ease-in;
@@ -366,7 +363,7 @@ main{
   display: none;
 }
 #menuButton{
-  padding: 0.8rem var(--margin-layout, 16px);
+  padding: var(--half-margin-layout, 8px);
 }
 .backgroundImage{
   background-size: cover;
@@ -424,13 +421,6 @@ main{
     padding-right: var(--half-margin-layout, 8px);
     margin: 0;
     margin-top: var(--margin-layout, 16px);
-  }
-  .cardImg{
-    height: 9rem;
-    margin: 0;
-  }
-  .cardDetail{
-    margin: 0;
   }
 }
 
