@@ -1,20 +1,26 @@
-<div class="backgroundImage paddingLayoutRoule">
-  <div class="loginForm lightGrayBackground">
+<div class="loginPage paddingLayoutRoule">
+  <div class="card">
+  <div class="cardImg" [style.background-image]="'url(../../assets/loginBkgCard.jpg)'"></div>
+  <div class="cardDetailTmp">
     <form name="userform" method="post" #formCtrl="ngForm">
       <h2>LOGIN</h2>
-      <label for="email">email:</label>
+      <label for="email">Email:</label>
       <input type="email" id="email" name="email" required [(ngModel)]="email" placeholder="email...">
 
       <label for="password">Password:</label>
       <input type="password" id="password" name="password" required [(ngModel)]="password" placeholder="password...">
-      <!--<p [ngStyle]="{'visibility': loginForm.valid ? 'hidden' : 'visible'}">-->
-      <p class=" lineMargin paddingHalfLayoutRoule errorLabel" [ngStyle]="{'visibility': loginError ? 'visible' : 'hidden'}">
-        <span><strong>Invalid username or/and password.</strong></span>
+
+      <p class=" lineMargin paddingHalfLayoutRoule errorLabel" *ngIf="loginError && loginErrorMessage">
+        <span><strong>{{loginErrorMessage}}</strong></span>
       </p>
-      <button name="login" class="lineMargin squareButton accentButton" type="button"
-              [disabled]="formCtrl.form.invalid" (click)="loginEmail()">Login with email</button>
+      <div class="flex">
+        <button name="login" class="lineMargin squareButton accentButton" type="button"
+                [disabled]="formCtrl.form.invalid" (click)="loginEmail()">Login with email</button>
+        <button name="loginGoogle" class="lineMargin squareButton passiveButton" (click)="signUpWithEmail()">Sign up with email</button>
+      </div>
     </form>
-    <button name="loginGoogle" class="lineMargin squareButton accentButton" type="button" (click)="signUpWithEmail()">sign up with email</button>
-    <button name="loginGoogle" class="lineMargin squareButton accentButton" type="button" (click)="loginGoogle()">Login with google</button>
+    <button name="loginGoogle" class="lineMargin loginSquareButton loginGoogle" (click)="loginGoogle()">Sign in with Google</button>
+    <button name="loginGoogle" class="lineMargin loginSquareButton loginFacebook">Login with with Facebook</button>
+    <button class="lineMargin loginSquareButton accentButton" (click)="checkLogin()">check</button>
   </div>
 </div>

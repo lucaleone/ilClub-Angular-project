@@ -5,6 +5,7 @@
   --negative-margin-layout: -16px;
   --ilClub-red: #B30000;
   --ilClub-darkGray : rgb(78, 78, 78);
+  --ilClub-mediumGray : #828282;
   --ilClub-lightGray: rgb(241, 241, 241);
 }
 @font-face {
@@ -74,6 +75,7 @@ input, button, select{
   cursor: pointer;
   height: 2.7rem;
   padding: var(--half-margin-layout, 8px);
+  border: solid 1px lightgray;
 }
 label {
   font-size: 1.15rem;
@@ -107,9 +109,10 @@ main{
 
 /*IlClub UI elements*/
 .squareButton{
-  background-color: var(--ilClub-lightGray, rgb(241, 241, 241));;
+  background-color: var(--ilClub-lightGray, rgb(241, 241, 241));
   border: 0;
   font-weight: bold;
+  padding: 0;
 }
 .pageButtonsContainer{
   position: fixed;
@@ -197,6 +200,14 @@ main{
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
   transition: margin 0.2s ease-in;
 }
+.cardDetailTmp{
+  position: relative;
+  padding: var(--margin-layout, 16px);
+  padding-top: var(--half-margin-layout, 8px);
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+  transition: margin 0.2s ease-in;
+}
 .cardRoundButtonContainer{
   position: absolute;
   height: 3rem;
@@ -234,7 +245,6 @@ main{
 
 
 
-
 .pageTitle {
   padding: var(--margin-layout, 16px);
   height: 10rem;
@@ -252,6 +262,11 @@ main{
   background-color: var(--ilClub-red, #B30000);
   color: white;
   border-color: var(--ilClub-red, #B30000);
+}
+.passiveButton{
+  background-color: var(--ilClub-mediumGray, #828282);
+  color: white;
+  border-color: var(--ilClub-mediumGray, #828282);
 }
 /*End ---- Mobile event element*/
 /*End ---- IlClub UI elements*/
@@ -364,20 +379,20 @@ main{
 }
 @media only screen and (max-width: 500px) and (orientation: portrait) {
   .backgroundImage{
-    background: url('./assets/loginBkgMobile.jpg') no-repeat top center;
+    background: url('assets/loginBkgMobile.jpg') no-repeat top center;
     background-size: cover;
   }
 }
 @media only screen and (min-width: 501px) {
   .backgroundImage{
-    background: url('./assets/loginBkg_media.jpg') no-repeat top center;
+    background: url('assets/loginBkg_media.jpg') no-repeat top center;
     background-size: cover;
   }
 }
 @media only screen and (orientation: landscape)
 {
   .backgroundImage {
-    background: url('./assets/loginBkg_media.jpg') no-repeat top center;
+    background: url('assets/loginBkg_media.jpg') no-repeat top center;
     background-size: cover;
   }
   .mobile{
@@ -427,7 +442,7 @@ main{
     --negative-margin-layout: -48px;
   }*/
   .backgroundImage {
-    background: url('./assets/loginBkg.jpg') no-repeat top center;
+    background: url('assets/loginBkg.jpg') no-repeat top center;
     background-size: cover;
   }
   #menuButton{

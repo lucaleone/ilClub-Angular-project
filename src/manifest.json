@@ -56,12 +56,14 @@
   "theme_color": "#B30000",
   "background_color": "#B30000",
   "screenshots": [{
-    "src": "Screenshots/in-game-1x.jpg",
-    "sizes": "1280x920",
-    "type": "image/jpeg"
+    "src": "Screenshots/Screen1_Home_Phone.png",
+    "type": "image/png"
   },{
-    "src": "Screenshots/in-game-2x.jpg",
-    "sizes": "1280x920",
-    "type": "image/jpeg"
-  }]
+    "src": "Screenshots/Screen2_Home_desktop.png",
+    "sizes": "1535x2046",
+    "type": "image/png"
+  },{
+      "src": "Screenshots/Screen3_Profile.png",
+      "type": "image/png"
+    }]
 }

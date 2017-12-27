@@ -4,6 +4,7 @@ import {User} from '../../models/user';
 import {EventsHandler} from '../../Services/eventsHandler.service';
 import * as firebase from 'firebase/app';
 import {AngularFireAuth} from 'angularfire2/auth';
+import {AuthService} from "../../Services/auth.service";
 
 @Component({
   selector: 'app-page-home',
@@ -16,13 +17,16 @@ export class PageHomeComponent {
   private userDetails: firebase.User = null;
   idTaken: boolean;
   selectedDay: number;
-  constructor(private appService: EventsHandler, private service: FirebaseService, private _firebaseAuth: AngularFireAuth) {
+
+  constructor(private appService: EventsHandler, private service: FirebaseService, private _firebaseAuth: AngularFireAuth,
+              private userService: AuthService) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.idTaken = (this.currentUser != null);
     _firebaseAuth.authState.subscribe((user) => {
       if (user) {
         this.userDetails = user;
       }});
+    console.log('HOME: è l"utente loggato ' + userService.printIsLoggedIn());
   }
 
   FilterByDate(event) {

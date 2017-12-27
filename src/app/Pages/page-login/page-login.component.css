@@ -1,3 +1,15 @@
+.loginPage {
+  background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  z-index: 500;
+  background-color: rgb(241, 241, 241);
+}
+.loginPage>*{
+  margin: auto;
+}
 .errorLabel{
   background-color: rgb(179, 58, 58);
   color: white;
@@ -7,6 +19,23 @@
 }
 .loginForm{
   padding: var(--margin-layout, 16px);
+}
+.loginSquareButton{
+  background-position: left !important;
+  background-size: contain !important;
+  font-weight: bold;
+  color: white;
+  border: 0;
+  text-align: left;
+  padding-left: 4rem;
+}
+.loginGoogle{
+  background: url("../../../assets/g-logo.jpg") no-repeat;
+  background-color: #dd4b39;
+}
+.loginFacebook{
+  background: url("../../../assets/f-logo.png") no-repeat;
+  background-color: #4267b2;
 }
 
 @media only screen and (min-width: 700px) {

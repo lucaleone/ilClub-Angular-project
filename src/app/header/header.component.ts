@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {EventsHandler} from '../Services/eventsHandler.service';
-import {User} from '../models/user';
-import {Router, ActivatedRoute} from '@angular/router';
+import {AuthService} from '../Services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +10,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 export class HeaderComponent implements OnInit {
   isMenuOpen: boolean;
 
-  constructor(private appService: EventsHandler, private router: Router, activatedRoute: ActivatedRoute) {
+  constructor(private appService: EventsHandler, private auth: AuthService) {
     this.isMenuOpen = false;
   }
 
@@ -28,7 +27,6 @@ export class HeaderComponent implements OnInit {
     this.appService.setIsMenuOpen(!this.isMenuOpen);
   }
   logout() {
-    localStorage.removeItem('currentUser');
-    this.router.navigateByUrl('/login');
+    this.auth.logout();
   }
 }

@@ -3,29 +3,21 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import {Observable} from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import {Router} from '@angular/router';
+import {IlClubUser} from '../models/ilClubUser';
 
 @Injectable()
-export class AuthService {
-  private user: Observable<firebase.User>;
-  private userDetails: firebase.User = null;
+export class AuthService  {
+  private _ilClubUser: Observable<IlClubUser>;
+  public ilClubUser: IlClubUser = null;
 
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
-    this.user = _firebaseAuth.authState;
-    // afAuth.auth.createUserWithEmailAndPassword('fsafa', 'wfsaf');
-    this.user.subscribe(
-      (user) => {
-        if (user) {
-          this.userDetails = user;
-          console.log(this.userDetails);
-        } else {
-          this.userDetails = null;
-        }
-      }
-    );
   }
-  getCurrentUser(): Observable<firebase.User> {
-    return this.user;
+  createIlClubAccount() {
+    // download image
+    // const tmpIlClubUser = new IlClubUser(this.userDetails.email, this.userDetails.displayName, null);
+    // add to DB
   }
+
   signInWithEmail(email, password) {
     return this._firebaseAuth.auth.signInWithEmailAndPassword(email, password);
   }
@@ -33,32 +25,22 @@ export class AuthService {
     return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
   }
   signInWithTwitter() {
-    return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.TwitterAuthProvider()
-    );
+    return this._firebaseAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
   }
 
   signInWithFacebook() {
-    return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.FacebookAuthProvider()
-    );
+    return this._firebaseAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
 
   signInWithGoogle() {
-    return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    );
+    return this._firebaseAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
   }
 
-  isLoggedIn() {
-    if (this.userDetails == null) {
-      return false;
-    } else {
-      return true;
-    }
+  printIsLoggedIn() {
+    this._firebaseAuth.authState.take(1).map(user => !!user).subscribe(value => console.log('User logged: ' + value));
   }
 
   logout() {
-    this._firebaseAuth.auth.signOut().then((res) => this.router.navigate(['/']));
+    this._firebaseAuth.auth.signOut().then((res) => this.router.navigate(['/login']));
   }
 }
