@@ -1,4 +1,4 @@
-import { ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { PageHomeComponent } from './Pages/page-home/page-home.component';
@@ -9,7 +9,8 @@ import { NewEventGuard } from './Pages/page-newevent/newevent.guard';
 import { PageLoginComponent } from './Pages/page-login/page-login.component';
 import {AuthGuard} from './Guards/auth.guard';
 import { PageEsploraComponent } from './Pages/page-esplora/page-esplora.component';
-export const appRoutes: Routes = [
+
+export const routes: Routes = [
   {
     path: '',
     component: PageHomeComponent,
@@ -64,5 +65,8 @@ export const appRoutes: Routes = [
   }
 ];
 
-export const routing: ModuleWithProviders =
-  RouterModule.forRoot(appRoutes);
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

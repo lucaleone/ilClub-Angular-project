@@ -1,18 +1,20 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
-import {routing} from './app.routes';
 
-import {ServiceWorkerModule} from '@angular/service-worker';
-import {AppComponent} from './app.component';
+import { environment } from '../environments/environment';
+
 // Pages
 import {PageLoginComponent} from './Pages/page-login/page-login.component';
 import {PageHomeComponent} from './Pages/page-home/page-home.component';
 import {PageNeweventComponent} from './Pages/page-newevent/page-newevent.component';
 import {PageNotfoundcomponentComponent} from './Pages/page-notfoundcomponent/page-notfoundcomponent.component';
 import {PageProfileComponent} from './Pages/page-profile/page-profile.component';
-import { PageEsploraComponent } from './Pages/page-esplora/page-esplora.component';
+import {PageEsploraComponent} from './Pages/page-esplora/page-esplora.component';
 // Components
 import {EventListComponent} from './event-list/event-list.component';
 import {HeaderComponent} from './header/header.component';
@@ -25,11 +27,9 @@ import {EventsHandler} from './Services/eventsHandler.service';
 import {NewEventGuard} from './Pages/page-newevent/newevent.guard';
 import {AuthGuard} from './Guards/auth.guard';
 // Modules
-import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
-
-import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -48,10 +48,10 @@ import { environment } from '../environments/environment';
   ],
   imports: [
     BrowserModule,
-    ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
+    AppRoutingModule,
     FormsModule,
     HttpModule,
-    routing,
+    // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase, 'ilClub'),
     AngularFirestoreModule,
     AngularFireAuthModule

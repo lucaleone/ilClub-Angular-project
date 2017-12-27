@@ -20,11 +20,8 @@
     "updateMode": "prefetch",
     "resources": {
       "files": [
-        "/assets/**",
-        "/icons/**",
-        "/Screenshots/**"
+        "/assets/**"
       ]
-
     }
   }]
 }

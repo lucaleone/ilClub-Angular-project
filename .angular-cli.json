@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "il-club"
+    "name": "il-club-angular-project"
   },
   "apps": [
     {
@@ -9,9 +9,9 @@
       "outDir": "dist",
       "assets": [
         "assets",
+        "favicon.ico",
         "icons",
         "Screenshots",
-        "favicon.ico",
         "manifest.json"
       ],
       "index": "index.html",
