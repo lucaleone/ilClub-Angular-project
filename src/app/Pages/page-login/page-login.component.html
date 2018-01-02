@@ -1,26 +1,41 @@
 <div class="loginPage paddingLayoutRoule">
   <div class="card">
-  <div class="cardImg" [style.background-image]="'url(../../assets/loginBkgCard.jpg)'"></div>
-  <div class="cardDetailTmp">
-    <form name="userform" method="post" #formCtrl="ngForm">
-      <h2>LOGIN</h2>
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required [(ngModel)]="email" placeholder="email...">
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required [(ngModel)]="password" placeholder="password...">
-
-      <p class=" lineMargin paddingHalfLayoutRoule errorLabel" *ngIf="loginError && loginErrorMessage">
-        <span><strong>{{loginErrorMessage}}</strong></span>
-      </p>
+    <div class="cardImg" [style.background-image]="'url(../../assets/loginBkgCard.jpg)'"></div>
+    <div *ngIf="userService.userAuthenticated" class="cardDetailTmp">
+      <div class="profileLoginImg"
+           [style.background-image]="'url(' + (userService.tmpUser.photoURL || './assets/profile.jpg') + ' )'"></div>
       <div class="flex">
-        <button name="login" class="lineMargin squareButton accentButton" type="button"
-                [disabled]="formCtrl.form.invalid" (click)="loginEmail()">Login with email</button>
-        <button name="loginGoogle" class="lineMargin squareButton passiveButton" (click)="signUpWithEmail()">Sign up with email</button>
+        <button name="login out" class="lineMargin squareButton passiveButton" type="button"
+                (click)="userService.logout()">Logout</button>
+        <button name="Continue home" class="lineMargin squareButton accentButton" routerLink="/home">Continue ></button>
       </div>
-    </form>
-    <button name="loginGoogle" class="lineMargin loginSquareButton loginGoogle" (click)="loginGoogle()">Sign in with Google</button>
-    <button name="loginGoogle" class="lineMargin loginSquareButton loginFacebook">Login with with Facebook</button>
-    <button class="lineMargin loginSquareButton accentButton" (click)="checkLogin()">check</button>
+    </div>
+    <div *ngIf="!userService.userAuthenticated" class="cardDetailTmp">
+      <form name="userform" method="post" #formCtrl="ngForm">
+        <h2>LOGIN</h2>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required [(ngModel)]="email" placeholder="email...">
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required [(ngModel)]="password" placeholder="password...">
+
+        <p class=" lineMargin paddingHalfLayoutRoule errorLabel" *ngIf="loginError && loginErrorMessage">
+          <span><strong>{{loginErrorMessage}}</strong></span>
+        </p>
+        <div class="flex">
+          <button name="login" class="lineMargin squareButton accentButton" type="button"
+                  [disabled]="formCtrl.form.invalid" (click)="loginEmail()">Login with email
+          </button>
+          <button name="loginGoogle" class="lineMargin squareButton passiveButton" (click)="signUpWithEmail()">Sign up
+            with email
+          </button>
+        </div>
+      </form>
+      <button name="loginGoogle" class="lineMargin loginSquareButton loginGoogle" (click)="loginGoogle()">Sign in with
+        Google
+      </button>
+      <button name="loginGoogle" class="lineMargin loginSquareButton loginFacebook">Login with with Facebook</button>
+      <button class="lineMargin loginSquareButton accentButton" (click)="checkLogin()">check</button>
+    </div>
   </div>
 </div>

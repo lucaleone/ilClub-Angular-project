@@ -1,5 +1,5 @@
 <div>
-  <app-event-list *ngIf="idTaken" [eventsId]="currentUser.eventi" [selectedDay]="selectedDay" [goingFilter]="true"></app-event-list>
+  <app-event-list *ngIf="true" [selectedDate]="selectedDate" [goingFilter]="true"></app-event-list>
   <div class="pageButtonsContainer">
     <input type="date" name="Calendar button" class="calendarIcon" (change)="FilterByDate($event)">
     <button routerLink="/new-event" class="newIcon" name="nuovo evento">

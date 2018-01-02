@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-page-profile',
   templateUrl: './page-profile.component.html',
-  styleUrls: ['./page-profile.component.css']
+  styleUrls: ['./page-profile.component.css', '../../app.component.css']
 })
 export class PageProfileComponent {
   currentUser: User;

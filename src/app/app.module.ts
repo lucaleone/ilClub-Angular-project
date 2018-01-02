@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { AppComponent } from './app.component';
 import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
@@ -30,6 +29,7 @@ import {AuthGuard} from './Guards/auth.guard';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireModule} from 'angularfire2';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -51,10 +51,10 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    // ServiceWorkerModule.register('/ngsw-worker.js', { enabled: environment.production }),
     AngularFireModule.initializeApp(environment.firebase, 'ilClub'),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule// .enablePersistence()
   ],
   providers: [
     AuthService,

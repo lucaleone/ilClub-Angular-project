@@ -1,9 +1,9 @@
-<div *ngIf="userDetails" class="menuNav" [ngClass]="isMenuOpen? 'change1' : ''">
+<div *ngIf="authService.userAuthenticated" class="menuNav mobile" [ngClass]="isMenuOpen? 'change1' : ''">
   <nav>
     <div routerLink="profile" (click)="close()" class="profileImg"
-         [style.background-image]="'url(' + (userDetails.photoURL || './assets/profile.jpg') + ' )'"></div>
+         [style.background-image]="'url(' + (authService.tmpUser.photoURL || './assets/profile.jpg') + ' )'"></div>
     <h2 routerLink="profile" (click)="close()" class="texCenter lineMargin">
-      {{userDetails.displayName || userDetails.email}}</h2>
+      {{authService.tmpUser.displayName || authService.tmpUser.email}}</h2>
     <div class="counterContainer overflow">
       <div class="floatLeft texCenter">
         <p id="menuNav_interestedCounter">4</p>

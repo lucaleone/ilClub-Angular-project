@@ -9,8 +9,17 @@ import {IlClubUser} from '../models/ilClubUser';
 export class AuthService  {
   private _ilClubUser: Observable<IlClubUser>;
   public ilClubUser: IlClubUser = null;
-
+  public tmpUser;
+  public userAuthenticated = false;
   constructor(private _firebaseAuth: AngularFireAuth, private router: Router) {
+    _firebaseAuth.auth.onAuthStateChanged((user) => {
+      this.tmpUser = user;
+      this.userAuthenticated = !!user;
+    });
+    // _firebaseAuth.authState.take(1).map(user => !!user).subscribe(value => {
+    //   console.log('OOOOOOOOOOOOOOO User logged: ' + value);
+    //   this.userAuthenticated = value;
+    // });
   }
   createIlClubAccount() {
     // download image
@@ -25,19 +34,20 @@ export class AuthService  {
     return this._firebaseAuth.auth.createUserWithEmailAndPassword(email, password);
   }
   signInWithTwitter() {
-    return this._firebaseAuth.auth.signInWithPopup(new firebase.auth.TwitterAuthProvider());
+    return this._firebaseAuth.auth.signInWithRedirect(new firebase.auth.TwitterAuthProvider());
   }
 
   signInWithFacebook() {
-    return this._firebaseAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+    return this._firebaseAuth.auth.signInWithRedirect(new firebase.auth.FacebookAuthProvider());
   }
 
   signInWithGoogle() {
-    return this._firebaseAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    return this._firebaseAuth.auth.signInWithRedirect(new firebase.auth.GoogleAuthProvider());
   }
 
-  printIsLoggedIn() {
-    this._firebaseAuth.authState.take(1).map(user => !!user).subscribe(value => console.log('User logged: ' + value));
+  isLoggedIn(): boolean {
+    // this._firebaseAuth.authState.take(1).map(user => !!user).subscribe(value => console.log('isLoggedIn(): ' + value));
+    return this.userAuthenticated;
   }
 
   logout() {

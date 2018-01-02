@@ -13,11 +13,7 @@ export class SideMenuComponent implements OnInit {
   isMenuOpen: boolean;
   public userDetails: firebase.User = null;
 
-  constructor(private appService: EventsHandler, private auth: AuthService, private _firebaseAuth: AngularFireAuth) {
-    _firebaseAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userDetails = user;
-      }});
+  constructor(private appService: EventsHandler, public authService: AuthService) {
     this.isMenuOpen = false;
     // close menu on landscape
     window.addEventListener('orientationchange', () => {
@@ -43,7 +39,7 @@ export class SideMenuComponent implements OnInit {
   }
 
   logout() {
-    this.auth.logout();
+    this.authService.logout();
     this.close();
   }
 }

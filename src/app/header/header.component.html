@@ -1,6 +1,7 @@
 <header>
   <div class="width35 mobile">
-    <div id="menuButton" class="headerButton" [ngClass]="isMenuOpen ? 'change': '' " (click)="menuClicked()">
+    <div id="menuButton" class="headerButton" *ngIf="authService.userAuthenticated" [ngClass]="isMenuOpen ? 'change': '' "
+         (click)="menuClicked()">
       <div id="barra1"></div>
       <div id="barra2"></div>
       <div id="barra3"></div>
@@ -12,22 +13,20 @@
   </div>
 
   <div class="width35 overflow mobile">
-    <div routerLink="esplora" class="headerButton floatRight" [style.background-image]="'url(./assets/search.png)'" (click)="closeSideMenu()">
+    <div *ngIf="authService.userAuthenticated" routerLink="esplora"
+         class="headerButton floatRight" [style.background-image]="'url(./assets/search.png)'" (click)="closeSideMenu()">
     </div>
   </div>
   <div routerLink="/home" class="headerButton homeHeaderButton desktop" (click)="closeSideMenu()">
     <h1 class="contentVerticalCenter">&nbsp;&nbsp; ilClub</h1>
   </div>
-  <div class="desktop">
+  <div *ngIf="authService.userAuthenticated" class="desktop flex">
     <div routerLink="new-event" class="headerButton contentCenter" [style.background-image]="'url(./assets/new.png)'"></div>
-  </div>
-  <div class="desktop">
+
     <div routerLink="profile" class="headerButton contentCenter" [style.background-image]="'url(./assets/user.png)'" ></div>
-  </div>
-  <div class="desktop">
+
     <div routerLink="esplora" class="headerButton contentCenter" [style.background-image]="'url(./assets/search.png)'"></div>
-  </div>
-  <div class="desktop">
+
     <div (click)="logout()" class="headerButton contentCenter" [style.background-image]="'url(./assets/logout.png)'"></div>
   </div>
 </header>

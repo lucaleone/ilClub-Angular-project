@@ -1,0 +1,181 @@
+
+/*IlClub UI elements*/
+.squareButton{
+  background-color: var(--ilClub-lightGray, rgb(241, 241, 241));
+  border: 0;
+  font-weight: bold;
+  padding: 0;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.26);
+}
+.pageButtonsContainer{
+  position: fixed;
+  right: var(--margin-layout, 16px);
+  bottom: var(--margin-layout, 16px);
+  z-index: 2;
+}
+
+.pageButtonsContainer>*{
+  width: 2.9rem;
+  height: 2.9rem;
+  margin-top: 1rem;
+  border-radius: 50%;
+  border:0;
+  box-shadow: 0 10px 12px 0 rgba(0,0,0,.22);
+  transition: box-shadow 0.2s ease-in;
+  background-color: white;
+  fill: black;
+}
+.pageButtonsContainer>*:last-child{
+  width: 3.3rem;
+  height: 3.3rem;
+  background-color: var(--ilClub-red, #B30000);
+  color: white;
+}
+.pageButtonsContainer>*:hover{
+  box-shadow: none;
+}
+
+.calendarIcon{
+  background-image: url('../assets/calendarBlack.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+  color: transparent;
+}
+.calendarIcon::-webkit-inner-spin-button,
+.calendarIcon::-webkit-clear-button,
+.calendarIcon::-webkit-datetime-edit-month-field,
+.calendarIcon::-webkit-datetime-edit-day-field,
+.calendarIcon::-webkit-datetime-edit-year-field {
+  -webkit-appearance: none;
+  display: none;
+}
+.calendarIcon::-webkit-calendar-picker-indicator {
+  color: transparent;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.newIcon{
+  background-image: url('../assets/new.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 50%;
+}
+.cardForm{
+  position: relative;
+  padding: var(--margin-layout, 16px);
+  padding-top: var(--half-margin-layout, 8px);
+  margin: var(--margin-layout, 16px);
+  margin-top: var(--negative-margin-layout, -16px);
+  background: white;
+  box-shadow: 0 3px 7px rgba(0,0,0,0.13);
+  transition: margin 0.2s ease-in;
+}
+.card{
+  width: 100%;
+  margin-bottom: var(--margin-layout, 16px);
+}
+.cardImg {
+  height: 9rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.cardDetail{
+  position: relative;
+  height: 12rem;
+  padding: var(--margin-layout, 16px);
+  padding-top: var(--half-margin-layout, 8px);
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+  transition: margin 0.2s ease-in;
+}
+.cardDetailTmp{
+  position: relative;
+  padding: var(--margin-layout, 16px);
+  padding-top: var(--half-margin-layout, 8px);
+  background: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.13), 0 6px 20px 0 rgba(0, 0, 0, 0.12);
+  transition: margin 0.2s ease-in;
+}
+.cardRoundButtonContainer{
+  position: absolute;
+  height: 3rem;
+  display: flex;
+  flex-direction: revert;
+  right: var(--margin-layout, 16px);
+  top: -1.65rem;
+  margin-left: auto;
+}
+.cardRoundButtonContainer>button{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border:0;
+  background-size: 40%;
+  margin-left: 1rem;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.25);
+}
+.cardRoundButtonContainer>button:hover{
+  box-shadow: none;
+}
+.cRBdelete{
+  background: var(--ilClub-red, #B30000) url('../assets/delete.png') no-repeat center;
+}
+.cRBedit{
+  background: var(--ilClub-red, #B30000) url('../assets/editButton.png') no-repeat center;
+}
+.cRBnoPartecipa{
+  background: var(--ilClub-red, #B30000) url('../assets/bookmark.png') no-repeat center;
+}
+.cRBpartecipa{
+  background: var(--ilClub-darkGray, rgb(78, 78, 78)) url('../assets/bookmark.png') no-repeat center;
+  /*vuoto*/
+}
+
+.pageTitle {
+  padding: var(--margin-layout, 16px);
+  height: 10rem;
+  width: 100%;
+  color: white;
+  text-align: left;
+  background-color: var(--ilClub-darkGray, rgb(78, 78, 78)) no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.pageTitle * {
+  margin: auto auto auto 0;
+}
+.accentButton{
+  background-color: var(--ilClub-red, #B30000);
+  color: white;
+  border-color: var(--ilClub-red, #B30000);
+}
+.passiveButton{
+  background-color: var(--ilClub-mediumGray, #828282);
+  color: white;
+  border-color: var(--ilClub-mediumGray, #828282);
+}
+@media only screen and (min-width: 700px) {
+  .card{
+    width: 50%;
+    padding-left: var(--half-margin-layout, 8px);
+    padding-right: var(--half-margin-layout, 8px);
+    margin: 0;
+    margin-top: var(--margin-layout, 16px);
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .card{
+    width: 33.3%;
+  }
+}
+/*2K TV*/
+@media only screen and (min-width: 2100px) {
+  .card{
+    width: 25%;
+  }
+}

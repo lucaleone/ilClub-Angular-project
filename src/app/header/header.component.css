@@ -18,6 +18,9 @@
 .headerButton>*{
    line-height: 3.4rem;
  }
+#menuButton{
+    padding: var(--half-margin-layout, 8px);
+  }
 #barra1, #barra2, #barra3{
   height: 0.2rem;
   background-color: white;

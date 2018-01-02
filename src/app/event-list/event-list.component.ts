@@ -1,41 +1,45 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FirebaseService} from '../firebase.service';
 import {Event} from '../models/event';
-import {Router, ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 import * as _ from 'lodash';
 import {User} from '../models/user';
+import {Observable} from 'rxjs/Observable';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 @Component({
   selector: 'app-event-list',
   templateUrl: './event-list.component.html',
-  styleUrls: ['./event-list.component.css']
+  styleUrls: ['../app.component.css']
 })
 export class EventListComponent implements OnInit {
   eventList: Event[];
   eventKeys: string[];
 
   @Input() eventsId: string[];
-  @Input() selectedDay: number;
+  @Input() selectedDate: number;
   showEvents: Event[];
   currentUser: User;
 
   @Input() esploraFilter: boolean;
   @Input() ownerFilter: boolean;
   @Input() goingFilter: boolean;
+  events: Observable<any[]>;
 
-  constructor(private router: Router, activatedRoute: ActivatedRoute, private firebaseService: FirebaseService) {
+  constructor(private router: Router, private firebaseService: FirebaseService, private db: AngularFireDatabase) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.events = this.db.list('/Eventi').valueChanges();
   }
 
   ngOnInit() {
-    if (this.eventsId !== []) {
+    /*if (this.eventsId !== []) {
       this.loadList(1);
     }
-    this.firebaseService.clickedDay.subscribe(num => this.showList(num));
+    this.firebaseService.clickedDay.subscribe(num => this.showList(num));*/
   }
 
   loadList(day: number) {
-    this.eventKeys = [];
+    /*this.eventKeys = [];
     this.eventList = [];
     this.firebaseService.getData('Eventi.json').subscribe(events => {
       for (const idx in events) {
@@ -62,18 +66,18 @@ export class EventListComponent implements OnInit {
       }
       this.eventList = _.sortBy(this.eventList, e => e.data);
       this.showList(day); // giorno odierno
-    });
+    });*/
   }
 
-  showList(selectedDay: number) {
-    console.log('showList');
+  showList(selectedDate: number) {
+    /*console.log('showList');
     this.showEvents = [];
     for (const event of this.eventList) {
       const eventDate = Number(event.data.replace('-', '').replace('-', ''));
-      if (eventDate >= selectedDay) {
+      if (eventDate >= selectedDate) {
         this.showEvents.push(event);
       }
-    }
+    }*/
   }
 
   deleteEvent(key: string) {

@@ -4,7 +4,7 @@ import { User } from '../../models/user';
 @Component({
   selector: 'app-page-esplora',
   templateUrl: './page-esplora.component.html',
-  styleUrls: ['./page-esplora.component.css']
+  styleUrls: ['../../app.component.css']
 })
 export class PageEsploraComponent  {
   currentUser: User;

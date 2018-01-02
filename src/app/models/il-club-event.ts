@@ -2,13 +2,13 @@ import {IlClubUser} from './ilClubUser';
 import {Library} from './library';
 
 export class IlClubEvent {
-  public id: number;
+  public $key: string;
   public title: string;
   public description: string;
-  public impPath = './assets/type-event/default.jpg';
+  public imgPath = './assets/type-event/default.jpg';
   public date: string;
   public time: string;
-  public library: Library;
-  public owner: IlClubUser;
-  public going: IlClubUser[];
+  public library: string;
+  public owner: string;
+  public going: string[];
 }
