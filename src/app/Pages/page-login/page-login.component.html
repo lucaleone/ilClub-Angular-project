@@ -19,7 +19,7 @@
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required [(ngModel)]="password" placeholder="password...">
 
-        <p class=" lineMargin paddingHalfLayoutRoule errorLabel" *ngIf="loginError && loginErrorMessage">
+        <p class=" lineMargin paddingHalfLayoutRoule errorLabel" *ngIf="loginError && loginErrorMessage!=''">
           <span><strong>{{loginErrorMessage}}</strong></span>
         </p>
         <div class="flex">
@@ -34,7 +34,7 @@
       <button name="loginGoogle" class="lineMargin loginSquareButton loginGoogle" (click)="loginGoogle()">Sign in with
         Google
       </button>
-      <button name="loginGoogle" class="lineMargin loginSquareButton loginFacebook">Login with with Facebook</button>
+      <button disabled name="loginGoogle" class="lineMargin loginSquareButton loginFacebook" (click)="signInWithFacebook()">Login with with Facebook</button>
       <button class="lineMargin loginSquareButton accentButton" (click)="checkLogin()">check</button>
     </div>
   </div>

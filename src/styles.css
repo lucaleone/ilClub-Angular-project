@@ -162,7 +162,7 @@ app-root:empty + .loading {
 .texCenter{
   text-align: center;
 }
-.contentCenter {
+.elementCenter {
   margin: 0 auto 0 auto;
 }
 .contentVerticalCenter {

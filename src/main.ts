@@ -15,3 +15,7 @@ platformBrowserDynamic().bootstrapModule(AppModule)
     }
   })
   .catch(err => console.log(err));
+
+setTimeout(function () {
+  window.scrollTo(0, 1);
+}, 1600);

@@ -73,13 +73,16 @@ export class PageLoginComponent {
   }
 
   loginGoogle() {
-    this.userService.signInWithGoogle();
+    this.userService.signInWithGoogle().then((res) => {
+      console.log('login succesful');
+    }).catch(err => this.displayLoginError(err.message));
   }
 
   signInWithFacebook() {
-    this.userService.signInWithFacebook();
+    this.userService.signInWithFacebook().then((res) => {
+      console.log('login succesful');
+    }).catch(err => this.displayLoginError(err.message));
   }
-
 
   displayLoginError(errMessage) {
     this.loginError = true;

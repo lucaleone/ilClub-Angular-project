@@ -21,12 +21,12 @@
     <h1 class="contentVerticalCenter">&nbsp;&nbsp; ilClub</h1>
   </div>
   <div *ngIf="authService.userAuthenticated" class="desktop flex">
-    <div routerLink="new-event" class="headerButton contentCenter" [style.background-image]="'url(./assets/new.png)'"></div>
+    <div routerLink="new-event" class="headerButton elementCenter" [style.background-image]="'url(./assets/new.png)'"></div>
 
-    <div routerLink="profile" class="headerButton contentCenter" [style.background-image]="'url(./assets/user.png)'" ></div>
+    <div routerLink="profile" class="headerButton elementCenter" [style.background-image]="'url(./assets/user.png)'" ></div>
 
-    <div routerLink="esplora" class="headerButton contentCenter" [style.background-image]="'url(./assets/search.png)'"></div>
+    <div routerLink="esplora" class="headerButton elementCenter" [style.background-image]="'url(./assets/search.png)'"></div>
 
-    <div (click)="logout()" class="headerButton contentCenter" [style.background-image]="'url(./assets/logout.png)'"></div>
+    <div (click)="logout()" class="headerButton elementCenter" [style.background-image]="'url(./assets/logout.png)'"></div>
   </div>
 </header>

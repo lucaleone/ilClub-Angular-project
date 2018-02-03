@@ -11,6 +11,24 @@
         "source": "**",
         "destination": "/index.html"
       }
-    ]
+    ],
+    "redirects": [ {
+      "source" : "https://accounts.google.com",
+      "destination" : "/index.html",
+      "type" : 302
+    }],
+    "headers": [ {
+      "source" : "**/**/*.@(eot|otf|ttf|ttc|woff|font.css)",
+      "headers" : [ {
+        "key" : "Access-Control-Allow-Origin",
+        "value" : "*"
+      } ]
+    }, {
+      "source" : "**/*.@(jpg|jpeg|gif|png)",
+      "headers" : [ {
+        "key" : "Cache-Control",
+        "value" : "max-age=50400"
+      } ]
+    }]
   }
 }
